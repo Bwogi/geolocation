@@ -35,6 +35,31 @@
           const speed = position.coords.speed;
 
           const timestamp = position.timestamp;
+          const date = new Date(timestamp);
+          let hours = date.getHours();
+          let minutes = date.getMinutes();
+          let seconds = date.getSeconds();
+          let ampm = "AM";
+          let nextHour = hours + 1;
+
+          // add a zero for single digits
+          if (hours < 10) {
+            hours = "0" + hours;
+            nextHour = "0" + nextHour;
+          }
+          if (minutes < 10) {
+            minutes = "0" + minutes;
+          }
+          if (seconds < 10) {
+            seconds = "0" + seconds;
+          }
+
+          if (hours > 12) {
+            hours = hours - 12;
+          }
+          if (hours >= 12) {
+            ampm = "PM";
+          }
 
           document.getElementById("result").innerHTML =
             "Latitude: " +
@@ -52,7 +77,27 @@
             "<br />Speed: " +
             speed +
             "<br />Timestamp: " +
-            timestamp;
+            " " +
+            timestamp +
+            "<br /> Actual time: " +
+            hours +
+            ":" +
+            minutes +
+            ":" +
+            seconds +
+            "<br /> Next Hour: " +
+            nextHour +
+            ": " +
+            minutes +
+            ": " +
+            seconds +
+            "<br /> We collected location information at " +
+            hours +
+            ":" +
+            minutes +
+            ":" +
+            seconds +
+            ampm;
         }
       }
     </script>
