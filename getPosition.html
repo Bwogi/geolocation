@@ -28,8 +28,31 @@
 
           const lat = position.coords.latitude;
           const long = position.coords.longitude;
+          const accuracy = position.coords.accuracy;
+          const alt = position.coords.altitude;
+          const altAccuracy = position.coords.altitudeAccuracy;
+          const direction = position.coords.heading;
+          const speed = position.coords.speed;
+
+          const timestamp = position.timestamp;
+
           document.getElementById("result").innerHTML =
-            "Latitude: " + lat + "<br />Longtitude: " + long;
+            "Latitude: " +
+            lat +
+            "<br />Longtitude: " +
+            long +
+            "<br />Accuracy: " +
+            accuracy +
+            "<br />Altitude: " +
+            alt +
+            "<br />Altitude Accuracy: " +
+            altAccuracy +
+            "<br />Direction: " +
+            direction +
+            "<br />Speed: " +
+            speed +
+            "<br />Timestamp: " +
+            timestamp;
         }
       }
     </script>
