@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Current Position</title>
+  </head>
+  <body>
+    <div id="result"></div>
+    <button id="btnPosition" onclick="getPosition();">
+      Get Current Position
+    </button>
+
+    <script type="text/javascript">
+      function getPosition() {
+        // chack if browser has html5 support
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(successposition);
+        } else {
+          document.getElementById("result").innerHTML =
+            "Browser does not support geolocation API!";
+        }
+        function successposition(position) {
+          // position object has 2 properties(timestamp and coordinates(coords))
+          // with coords: collect information on lat, lon, accuracy, altitude and altitude accuracy, heading and speed
+          // timestamp is a separate property returned by yhe position object
+
+          const lat = position.coords.latitude;
+          const long = position.coords.longitude;
+          document.getElementById("result").innerHTML =
+            "Latitude: " + lat + "<br />Longtitude: " + long;
+        }
+      }
+    </script>
+  </body>
+</html>
