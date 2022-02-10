@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Current Position</title>
+  </head>
+  <body>
+    <h4>Getting Position details over a period of time</h4>
+    <div id="result"></div>
+    <button id="btnStartTracking" onclick="watchPosition()">
+      Start Tracking Location
+    </button>
+
+    <button id="btnStopTracking" onclick="stopWatching()">
+      Stop Tracking Location
+    </button>
+
+    <script type="text/javascript">
+      let watchId;
+
+      function watchPosition() {
+        // chack if browser has html5 support
+        if (navigator.geolocation) {
+          watchId = navigator.geolocation.watchPosition(successPosition);
+        } else {
+          document.getElementById("result").innerHTML =
+            "Browser incopatibility seen! Upgrade your browser";
+        }
+
+        function stopWatching() {
+          clearWatch(watchId);
+        }
+
+        function successPosition(position) {
+          // position object has 2 properties(timestamp and coordinates(coords))
+          // with coords: collect information on lat, lon, accuracy, altitude and altitude accuracy, heading and speed
+          // timestamp is a separate property returned by yhe position object
+
+          const lat = position.coords.latitude;
+          const long = position.coords.longitude;
+          // const accuracy = position.coords.accuracy;
+          // const alt = position.coords.altitude;
+          // const altAccuracy = position.coords.altitudeAccuracy;
+          // const direction = position.coords.heading;
+          // const speed = position.coords.speed;
+
+          // const timestamp = position.timestamp;
+          // const date = new Date(timestamp);
+          // let hours = date.getHours();
+          // let minutes = date.getMinutes();
+          // let seconds = date.getSeconds();
+          // let ampm = "AM";
+          // let nextHour = hours + 1;
+
+          // // add a zero for single digits
+          // if (hours < 10) {
+          //   hours = "0" + hours;
+          //   nextHour = "0" + nextHour;
+          // }
+          // if (minutes < 10) {
+          //   minutes = "0" + minutes;
+          // }
+          // if (seconds < 10) {
+          //   seconds = "0" + seconds;
+          // }
+
+          // if (hours > 12) {
+          //   hours = hours - 12;
+          // }
+          // if (hours >= 12) {
+          //   ampm = "PM";
+          // }
+
+          document.getElementById("result").innerHTML =
+            "Latitude: " + lat + "<br />Longtitude: " + long;
+          //+
+          // "<br />Accuracy: " +
+          // accuracy +
+          // "<br />Altitude: " +
+          // alt +
+          // "<br />Altitude Accuracy: " +
+          // altAccuracy +
+          // "<br />Direction: " +
+          // direction +
+          // "<br />Speed: " +
+          // speed +
+          // "<br />Timestamp: " +
+          // " " +
+          // timestamp +
+          // "<br /> Actual time: " +
+          // hours +
+          // ":" +
+          // minutes +
+          // ":" +
+          // seconds +
+          // "<br /> Next Hour: " +
+          // nextHour +
+          // ": " +
+          // minutes +
+          // ": " +
+          // seconds +
+          // "<br /> We collected location information at " +
+          // hours +
+          // ":" +
+          // minutes +
+          // ":" +
+          // seconds +
+          // ampm;
+        }
+      }
+    </script>
+  </body>
+</html>
