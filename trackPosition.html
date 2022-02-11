@@ -17,16 +17,31 @@
       Stop Tracking Location
     </button>
 
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript">
       let watchId;
 
-      function watchPosition() {
+      window.onload = function watchPosition() {
         // chack if browser has html5 support
         if (navigator.geolocation) {
-          watchId = navigator.geolocation.watchPosition(successPosition);
+          watchId = navigator.geolocation.watchPosition(
+            successPosition,
+            failurePosition,
+            {
+              enableHighAccuracy: false,
+              timeout: 10000,
+              maximumAge: 4000,
+            }
+          );
         } else {
           document.getElementById("result").innerHTML =
             "Browser incopatibility seen! Upgrade your browser";
+        }
+
+        function failurePosition(error) {
+          document.getElementById(
+            "result"
+          ).innerHTML = `Error Code: ${error.code} Error Message: ${error.message}`;
         }
 
         function stopWatching() {
@@ -109,7 +124,7 @@
           // seconds +
           // ampm;
         }
-      }
+      };
     </script>
   </body>
 </html>
