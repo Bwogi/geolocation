@@ -13,7 +13,7 @@
       Start Tracking Location
     </button>
 
-    <button id="btnStopTracking" onclick="stopWatching()">
+    <button id="btnStopTracking" onclick="stopWatching();">
       Stop Tracking Location
     </button>
 
@@ -28,9 +28,9 @@
             successPosition,
             failurePosition,
             {
-              enableHighAccuracy: false,
-              timeout: 10000,
-              maximumAge: 4000,
+              enableHighAccuracy: true,
+              timeout: 4000,
+              maximumAge: 3000,
             }
           );
         } else {
@@ -45,7 +45,7 @@
         }
 
         function stopWatching() {
-          clearWatch(watchId);
+          navigator.geolocation.clearWatch(watchId);
         }
 
         function successPosition(position) {
